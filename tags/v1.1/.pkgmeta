@@ -1,5 +1,0 @@
-package-as: BattleNetFriendAlert
-
-manual-changelog:
-	filename: Changelog.txt
-	markup-type: creole
