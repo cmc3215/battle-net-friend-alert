@@ -1,0 +1,8 @@
+**1.1**
+* Release date: 11/02/2014
+* Changed "is now (@ In Battle.net)." to "stopped playing (@ In Battle.net)."
+* Removed an unnecessarily created frame during code cleanup
+
+**1.0**
+* Release date: 11/01/2014
+* Intial public release
