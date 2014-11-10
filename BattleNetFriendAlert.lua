@@ -10,7 +10,7 @@ local BNFA_ICON = {
 	["WoW"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-WoW:14|t",
 	["D3"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-D3:14|t",
 	["WTCG"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-WTCG:14|t",
-	["HotS"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-HotS:14|t",
+	["Hero"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-HotS:14|t",
 	["S2"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-SC2:14|t",
 };
 local L = BNFA_LOCALIZATION;
