@@ -1,6 +1,6 @@
 ﻿## Interface: 60000
 ## Title: Battle.net Friend Alert
-## Version: 1.1
+## Version: 1.2
 ## Author: Clinton Caldwell
 ## Notes: Alerts you when Battle.net friends switch WoW characters or games.
 
