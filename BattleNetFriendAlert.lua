@@ -47,6 +47,7 @@ function BNFA_ScanFriends()
 						print( BATTLENET_FONT_COLOR_CODE .. BNFA_ICON["Friend"] .. string.format( L["%s stopped playing (%sIn Battle.net)."], BNFA_HBNPlayer( presenceName, presenceID ), BNFA_ICON[game] ) .. "|r" );
 					else
 						print( BATTLENET_FONT_COLOR_CODE .. BNFA_ICON["Friend"] .. string.format( L["%s is now playing (%s%s)."], BNFA_HBNPlayer( presenceName, presenceID ), BNFA_ICON[game], characterName ) .. "|r" );
+						PlaySound( "UI_BnetToast" );
 					end
 				end
 			end
