@@ -1,3 +1,7 @@
+**1.3**
+* Release date: 11/12/2014
+* Added Battle.net Toast sound to the now playing alert (http://www.wowhead.com/sound=18019/ui-bnettoast).
+
 **1.2**
 * Release date: 11/10/2014
 * Bug fix, friends logging into Heroes of the Storm causes LUA error
