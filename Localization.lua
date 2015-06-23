@@ -1,9 +1,14 @@
-﻿BNFA_LOCALIZATION = setmetatable( {}, { __index = function( self, key )
+﻿--------------------------------------------------------------------------------------------------------------------------------------------
+-- INIT
+--------------------------------------------------------------------------------------------------------------------------------------------
+local NS = select( 2, ... );
+--------------------------------------------------------------------------------------------------------------------------------------------
+NS.localization = setmetatable( {}, { __index = function( self, key )
 	self[key] = key; -- Use original phrase for undefined keys
 	return key;
 end } );
 --
-local L = BNFA_LOCALIZATION;
+local L = NS.localization;
 -- enUS, enGB
 if GetLocale() == "enUS" or GetLocale() == "enGB" then
 -- L["%s is now playing (%s%s)."] = ""
