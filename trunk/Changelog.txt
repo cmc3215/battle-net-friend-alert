@@ -1,3 +1,8 @@
+**1.5**
+* Release date: 06/23/2015
+* TOC updated for patch 6.2
+* Minor code rewrite, removed functions from global namespace, now using C_Timer.After introduced in patch 6.0.3
+
 **1.4**
 * Release date: 02/24/2015
 * TOC updated for patch 6.1
