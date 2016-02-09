@@ -1,3 +1,7 @@
+**1.6**
+* Release date: 02/08/2016
+* Added icon path for Overwatch
+
 **1.5**
 * Release date: 06/23/2015
 * TOC updated for patch 6.2

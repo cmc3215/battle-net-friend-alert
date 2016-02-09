@@ -12,6 +12,7 @@ NS.icons = {
 	["WTCG"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-WTCG:14|t",
 	["Hero"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-HotS:14|t",
 	["S2"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-SC2:14|t",
+	["Pro"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-Overwatch:14|t",
 };
 local L = NS.localization;
 --------------------------------------------------------------------------------------------------------------------------------------------
