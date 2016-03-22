@@ -1,0 +1,8 @@
+﻿## Interface: 60200
+## Title: Battle.net Friend Alert
+## Version: 1.7
+## Author: Clinton Caldwell
+## Notes: Alerts you when Battle.net friends switch WoW characters or games.
+
+Localization.lua
+BattleNetFriendAlert.lua
