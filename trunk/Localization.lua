@@ -13,6 +13,7 @@ local L = NS.localization;
 if GetLocale() == "enUS" or GetLocale() == "enGB" then
 -- L["%s is now playing (%s%s)."] = ""
 -- L["%s stopped playing (%sIn Battle.net)."] = ""
+-- L["Unknown"] = ""
 -- deDE
 elseif GetLocale() == "deDE" then
 -- esES

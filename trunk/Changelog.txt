@@ -1,3 +1,7 @@
+**1.7**
+* Release date: 03/22/2016
+* Bug fix: On rare occasion, an empty character name causes an LUA error with the format function.
+
 **1.6**
 * Release date: 02/08/2016
 * Added icon path for Overwatch
