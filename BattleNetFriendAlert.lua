@@ -18,27 +18,27 @@ local L = NS.localization;
 --------------------------------------------------------------------------------------------------------------------------------------------
 -- Functions
 --------------------------------------------------------------------------------------------------------------------------------------------
-NS.BNPlayerLink = function( presenceName, presenceID )
-	return string.format( "|HBNplayer:%s:%s|h[%s]|h", presenceName, presenceID, presenceName );
+NS.BNPlayerLink = function( accountName, bnetIDAccount )
+	return string.format( "|HBNplayer:%s:%s|h[%s]|h", accountName, bnetIDAccount, accountName );
 end
 
 --
 NS.ScanFriends = function()
 	if BNConnected() then
 		for index = 1, BNGetNumFriends() do
-			local presenceID,presenceName,_,_,characterName,_,game = BNGetFriendInfo( index );
-			if game and NS.friends[presenceID] and NS.friends[presenceID]["game"] then -- Make sure friend is online now and was online during last scan
-				if game ~= NS.friends[presenceID]["game"] then -- Alert, friend has switched games (App considered a game)
+			local bnetIDAccount,accountName,_,_,characterName,_,game = BNGetFriendInfo( index );
+			if game and NS.friends[bnetIDAccount] and NS.friends[bnetIDAccount]["game"] then -- Make sure friend is online now and was online during last scan
+				if game ~= NS.friends[bnetIDAccount]["game"] then -- Alert, friend has switched games (App considered a game)
 					if game == "App" then
-						print( BATTLENET_FONT_COLOR_CODE .. NS.icons["Friend"] .. string.format( L["%s stopped playing (%sIn Battle.net)."], NS.BNPlayerLink( presenceName, presenceID ), NS.icons[game] ) .. FONT_COLOR_CODE_CLOSE );
+						print( BATTLENET_FONT_COLOR_CODE .. NS.icons["Friend"] .. string.format( L["%s stopped playing (%sIn Battle.net)."], NS.BNPlayerLink( accountName, bnetIDAccount ), NS.icons[game] ) .. FONT_COLOR_CODE_CLOSE );
 					else
-						print( BATTLENET_FONT_COLOR_CODE .. NS.icons["Friend"] .. string.format( L["%s is now playing (%s%s)."], NS.BNPlayerLink( presenceName, presenceID ), NS.icons[game], characterName ) .. FONT_COLOR_CODE_CLOSE );
+						print( BATTLENET_FONT_COLOR_CODE .. NS.icons["Friend"] .. string.format( L["%s is now playing (%s%s)."], NS.BNPlayerLink( accountName, bnetIDAccount ), NS.icons[game], characterName or L["Unknown"] ) .. FONT_COLOR_CODE_CLOSE );
 						PlaySound( "UI_BnetToast" );
 					end
 				end
 			end
 			-- Record latest friend info
-			NS.friends[presenceID] = { ["game"] = game };
+			NS.friends[bnetIDAccount] = { ["game"] = game };
 		end
 	end
 	-- Scan again in interval seconds
