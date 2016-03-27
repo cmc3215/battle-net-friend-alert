@@ -1,6 +1,10 @@
+**1.8**
+* Release date: 03/27/2016
+* If your friend's character name is not provided by Blizzard, which is possible in games other than WoW since patch 6.2.4, then the game name (e.g. Hearthstone) will now be shown instead of "Unknown" to avoid confusion.
+
 **1.7**
 * Release date: 03/22/2016
-* Bug fix: On rare occasion, an empty character name causes an LUA error with the format function.
+* Bug fix, patch 6.2.4 caused Battle.net friends playing games other than WoW to have an empty character name. The unexpected empty data caused an LUA error with the format function.
 
 **1.6**
 * Release date: 02/08/2016
