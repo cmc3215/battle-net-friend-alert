@@ -15,6 +15,14 @@ NS.icons = {
 	["Pro"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-Overwatch:14|t",
 };
 local L = NS.localization;
+NS.games = {
+	["WoW"] = L["World of Warcraft"],
+	["D3"] = L["Diablo III"],
+	["WTCG"] = L["Hearthstone"],
+	["Hero"] = L["Heroes of the Storm"],
+	["S2"] = L["StarCraft II"],
+	["Pro"] = L["Overwatch"],
+};
 --------------------------------------------------------------------------------------------------------------------------------------------
 -- Functions
 --------------------------------------------------------------------------------------------------------------------------------------------
@@ -32,7 +40,7 @@ NS.ScanFriends = function()
 					if game == "App" then
 						print( BATTLENET_FONT_COLOR_CODE .. NS.icons["Friend"] .. string.format( L["%s stopped playing (%sIn Battle.net)."], NS.BNPlayerLink( accountName, bnetIDAccount ), NS.icons[game] ) .. FONT_COLOR_CODE_CLOSE );
 					else
-						print( BATTLENET_FONT_COLOR_CODE .. NS.icons["Friend"] .. string.format( L["%s is now playing (%s%s)."], NS.BNPlayerLink( accountName, bnetIDAccount ), NS.icons[game], characterName or L["Unknown"] ) .. FONT_COLOR_CODE_CLOSE );
+						print( BATTLENET_FONT_COLOR_CODE .. NS.icons["Friend"] .. string.format( L["%s is now playing (%s%s)."], NS.BNPlayerLink( accountName, bnetIDAccount ), NS.icons[game], characterName or NS.games[game] ) .. FONT_COLOR_CODE_CLOSE );
 						PlaySound( "UI_BnetToast" );
 					end
 				end
