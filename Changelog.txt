@@ -1,6 +1,6 @@
 **1.9**
 * Release date: 03/28/2016
-* Added localization for several languages kindly given by Curse users. Localization will now be updated automatically each release through CurseForge (http://wow.curseforge.com/addons/battle-net-friend-alert/localization/).
+* Added localization for several languages kindly given by Curse users. Localization will now be updated automatically each release with the phrases from CurseForge (http://wow.curseforge.com/addons/battle-net-friend-alert/localization/).
 
 **1.8**
 * Release date: 03/27/2016
