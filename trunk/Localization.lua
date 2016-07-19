@@ -11,14 +11,7 @@ end } );
 local L = NS.localization;
 -- enUS, enGB
 if GetLocale() == "enUS" or GetLocale() == "enGB" then
--- L["%s is now playing (%s%s)."] = ""
--- L["%s stopped playing (%sIn Battle.net)."] = ""
--- L["World of Warcraft"] = ""
--- L["Diablo III"] = ""
--- L["Hearthstone"] = ""
--- L["Heroes of the Storm"] = ""
--- L["StarCraft II"] = ""
--- L["Overwatch"] = ""
+--@localization(locale="enUS", format="lua_additive_table")@
 -- deDE
 elseif GetLocale() == "deDE" then
 --@localization(locale="deDE", format="lua_additive_table")@
