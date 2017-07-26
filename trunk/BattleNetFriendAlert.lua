@@ -29,7 +29,6 @@ NS.games = {
 NS.BNPlayerLink = function( accountName, bnetIDAccount )
 	return string.format( "|HBNplayer:%s:%s|h[%s]|h", accountName, bnetIDAccount, accountName );
 end
-
 --
 NS.ScanFriends = function()
 	if BNConnected() then
@@ -41,7 +40,7 @@ NS.ScanFriends = function()
 						print( BATTLENET_FONT_COLOR_CODE .. NS.icons["Friend"] .. string.format( L["%s stopped playing (%sIn Battle.net)."], NS.BNPlayerLink( accountName, bnetIDAccount ), NS.icons[game] ) .. FONT_COLOR_CODE_CLOSE );
 					else
 						print( BATTLENET_FONT_COLOR_CODE .. NS.icons["Friend"] .. string.format( L["%s is now playing (%s%s)."], NS.BNPlayerLink( accountName, bnetIDAccount ), NS.icons[game], characterName or NS.games[game] ) .. FONT_COLOR_CODE_CLOSE );
-						PlaySound( "UI_BnetToast" );
+						PlaySound( "UI_BnetToast" ); -- id:18019 for patch 7.3
 					end
 				end
 			end
