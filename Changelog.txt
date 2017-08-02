@@ -1,3 +1,13 @@
+**2.4**
+
+- Release date: 08/02/2017
+- New slash command allows setting a chat window to use for alerts.
+- New slash command for turning on|off the chat tab flash on alert.
+- Usage of slash commands has been added to the addon's description on Curse.com or type /bnfa in game.
+- Icon added for game StarCraft: Remastered.
+- The localization phrase that includes (%sIn Battle.net) has been changed to (%sIn App) to match changes made by Blizzard.
+- New localization phrases required for these changes have been added in the addon and on CurseForge for translation.
+
 **2.3**
 
 - Release date: 07/26/2017
