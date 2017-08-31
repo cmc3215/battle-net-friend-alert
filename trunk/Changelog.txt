@@ -1,3 +1,8 @@
+**2.6**
+
+- Release date: 08/31/2017
+- Added icon path for Destiny 2
+
 **2.5**
 
 - Release date: 08/31/2017

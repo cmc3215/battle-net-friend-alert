@@ -5,7 +5,7 @@ local NS = select( 2, ... );
 local L = NS.localization;
 NS.addon = ...;
 NS.title = GetAddOnMetadata( NS.addon, "Title" );
-NS.versionString = "2.5";
+NS.versionString = "2.6";
 NS.version = tonumber( NS.versionString );
 --
 NS.interval = 3; -- Seconds between ScanFriends()
@@ -20,6 +20,7 @@ NS.icons = {
 	["S1"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-SC:14|t",
 	["S2"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-SC2:14|t",
 	["Pro"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-Overwatch:14|t",
+	["DST2"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-Destiny2:14|t",
 };
 NS.games = {
 	["WoW"] = L["World of Warcraft"],
@@ -29,6 +30,7 @@ NS.games = {
 	["S1"] = L["StarCraft: Remastered"],
 	["S2"] = L["StarCraft II"],
 	["Pro"] = L["Overwatch"],
+	["DST2"] = L["Destiny 2"],
 };
 --------------------------------------------------------------------------------------------------------------------------------------------
 -- Miscellaneous Functions
