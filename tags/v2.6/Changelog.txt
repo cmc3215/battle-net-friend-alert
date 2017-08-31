@@ -1,0 +1,92 @@
+**2.6**
+
+- Release date: 08/31/2017
+- Added icon path for Destiny 2
+
+**2.5**
+
+- Release date: 08/31/2017
+- TOC updated for patch 7.3.0.
+- Bug fix: PlaySound API call updated for patch 7.3.0.
+
+**2.4**
+
+- Release date: 08/02/2017
+- New slash command allows setting a chat window to use for alerts.
+- New slash command for turning on|off the chat tab flash on alert.
+- Usage of slash commands has been added to the addon's description on Curse.com or type /bnfa in game.
+- Icon added for game StarCraft: Remastered.
+- The localization phrase that includes (%sIn Battle.net) has been changed to (%sIn App) to match changes made by Blizzard.
+- New localization phrases required for these changes have been added in the addon and on CurseForge for translation.
+
+**2.3**
+
+- Release date: 07/26/2017
+- Adds localization for Russian kindly added by Curse users.
+
+**2.2**
+
+- Release date: 03/30/2017
+- TOC updated for patch 7.2.0.
+
+**2.1**
+
+- Release date: 10/25/2016
+- TOC updated for patch 7.1.0.
+
+**2.0**
+
+- Release date: 07/19/2016
+- TOC updated for patch 7.0.3.
+
+**1.9**
+
+- Release date: 03/28/2016
+- Added localization for several languages kindly given by Curse users. Localization will now be updated automatically each release with the phrases from CurseForge (http://wow.curseforge.com/addons/battle-net-friend-alert/localization/).
+
+**1.8**
+
+- Release date: 03/27/2016
+* If your friend's character name is not provided by Blizzard, which is possible in games other than WoW since patch 6.2.4, then the game name (e.g. Hearthstone) will now be shown instead of "Unknown" to avoid confusion.
+
+**1.7**
+
+- Release date: 03/22/2016
+- Bug fix, patch 6.2.4 caused Battle.net friends playing games other than WoW to have an empty character name. The unexpected empty data caused an LUA error with the format function.
+
+**1.6**
+
+- Release date: 02/08/2016
+- Added icon path for Overwatch.
+
+**1.5**
+
+- Release date: 06/23/2015
+- TOC updated for patch 6.2.0.
+- Minor code rewrite, removed functions from global namespace, now using C_Timer.After introduced in patch 6.0.3.
+
+**1.4**
+
+- Release date: 02/24/2015
+- TOC updated for patch 6.1.0.
+
+**1.3**
+
+- Release date: 11/12/2014
+- Added Battle.net Toast sound to the now playing alert (http://www.wowhead.com/sound=18019/ui-bnettoast).
+
+**1.2**
+
+- Release date: 11/10/2014
+- Bug fix, friends logging into Heroes of the Storm causes LUA error.
+
+**1.1**
+
+- Release date: 11/02/2014
+- Changed "is now (@ In Battle.net)." to "stopped playing (@ In Battle.net).".
+- Removed an unnecessarily created frame during code cleanup.
+
+**1.0**
+
+- Release date: 11/01/2014
+- Intial public release.
