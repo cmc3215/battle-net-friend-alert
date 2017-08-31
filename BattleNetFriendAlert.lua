@@ -5,7 +5,7 @@ local NS = select( 2, ... );
 local L = NS.localization;
 NS.addon = ...;
 NS.title = GetAddOnMetadata( NS.addon, "Title" );
-NS.versionString = "2.4";
+NS.versionString = "2.5";
 NS.version = tonumber( NS.versionString );
 --
 NS.interval = 3; -- Seconds between ScanFriends()
@@ -47,7 +47,7 @@ NS.ScanFriends = function ()
 						NS.AddMessageToWindow( NS.icons["Friend"] .. string.format( L["%s stopped playing (%sIn App)."], NS.BNPlayerLink( accountName, bnetIDAccount ), NS.icons[game] ) );
 					else
 						NS.AddMessageToWindow( NS.icons["Friend"] .. string.format( L["%s is now playing (%s%s)."], NS.BNPlayerLink( accountName, bnetIDAccount ), NS.icons[game], characterName or NS.games[game] ) );
-						PlaySound( "UI_BnetToast" ); -- id:18019 for patch 7.3
+						PlaySound( 18019 ); -- UI_BnetToast
 					end
 				end
 			end
