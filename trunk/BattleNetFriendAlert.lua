@@ -5,14 +5,14 @@ local NS = select( 2, ... );
 local L = NS.localization;
 NS.addon = ...;
 NS.title = GetAddOnMetadata( NS.addon, "Title" );
-NS.versionString = "2.6";
+NS.versionString = "2.7";
 NS.version = tonumber( NS.versionString );
 --
 NS.interval = 3; -- Seconds between ScanFriends()
 NS.friends = {};
 NS.icons = {
 	["Friend"] = "|TInterface\\FriendsFrame\\UI-Toast-FriendOnlineIcon:16:16:0:0:32:32:2:30:2:30|t",
-	["App"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-Battlenet:14|t",
+	["App"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-Battlenet:14|t", -- Blizzard App
 	["WoW"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-WoW:14|t",
 	["D3"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-D3:14|t",
 	["WTCG"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-WTCG:14|t",
@@ -23,6 +23,7 @@ NS.icons = {
 	["DST2"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-Destiny2:14|t",
 };
 NS.games = {
+	--["App"] -- Excluded, not needed
 	["WoW"] = L["World of Warcraft"],
 	["D3"] = L["Diablo III"],
 	["WTCG"] = L["Hearthstone"],
@@ -44,11 +45,11 @@ NS.ScanFriends = function ()
 		for index = 1, BNGetNumFriends() do
 			local bnetIDAccount,accountName,_,_,characterName,_,game = BNGetFriendInfo( index );
 			if game and NS.friends[bnetIDAccount] and NS.friends[bnetIDAccount]["game"] then -- Make sure friend is online now and was online during last scan
-				if game ~= NS.friends[bnetIDAccount]["game"] then -- Alert, friend has switched games (App considered a game)
+				if game ~= NS.friends[bnetIDAccount]["game"] then -- Alert, friend has switched games (App is considered a game)
 					if game == "App" then
 						NS.AddMessageToWindow( NS.icons["Friend"] .. string.format( L["%s stopped playing (%sIn App)."], NS.BNPlayerLink( accountName, bnetIDAccount ), NS.icons[game] ) );
 					else
-						NS.AddMessageToWindow( NS.icons["Friend"] .. string.format( L["%s is now playing (%s%s)."], NS.BNPlayerLink( accountName, bnetIDAccount ), NS.icons[game], characterName or NS.games[game] ) );
+						NS.AddMessageToWindow( NS.icons["Friend"] .. string.format( L["%s is now playing (%s%s)."], NS.BNPlayerLink( accountName, bnetIDAccount ), ( NS.icons[game] or L["Unknown Game"] ), ( characterName or NS.games[game] or L["Unknown Character and Game"] ) ) );
 						PlaySound( 18019 ); -- UI_BnetToast
 					end
 				end
