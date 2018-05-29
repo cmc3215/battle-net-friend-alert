@@ -5,33 +5,38 @@ local NS = select( 2, ... );
 local L = NS.localization;
 NS.addon = ...;
 NS.title = GetAddOnMetadata( NS.addon, "Title" );
-NS.versionString = "2.7";
+NS.versionString = "2.8";
 NS.version = tonumber( NS.versionString );
 --
 NS.interval = 3; -- Seconds between ScanFriends()
 NS.friends = {};
 NS.icons = {
-	["Friend"] = "|TInterface\\FriendsFrame\\UI-Toast-FriendOnlineIcon:16:16:0:0:32:32:2:30:2:30|t",
-	["App"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-Battlenet:14|t", -- Blizzard App
-	["WoW"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-WoW:14|t",
-	["D3"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-D3:14|t",
-	["WTCG"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-WTCG:14|t",
-	["Hero"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-HotS:14|t",
-	["S1"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-SC:14|t",
-	["S2"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-SC2:14|t",
-	["Pro"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-Overwatch:14|t",
 	["DST2"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-Destiny2:14|t",
+	["WTCG"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-WTCG:14|t",
+	["WoW"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-WoW:14|t",
+	["S1"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-SC:14|t",
+	["D3"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-D3:14|t",
+	["Hero"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-HotS:14|t",
+	["Pro"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-Overwatch:14|t",
+	["App"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-Battlenet:14|t", -- Blizzard Battle.net App (Desktop)
+	["S2"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-SC2:14|t",
+	--["CLNT"] -- Unknown
+	["BSAp"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-Battlenet:14|t", -- Blizzard Battle.net App (Mobile)
+	--
+	["Friend"] = "|TInterface\\FriendsFrame\\UI-Toast-FriendOnlineIcon:16:16:0:0:32:32:2:30:2:30|t",
 };
 NS.games = {
-	--["App"] -- Excluded, not needed
-	["WoW"] = L["World of Warcraft"],
-	["D3"] = L["Diablo III"],
-	["WTCG"] = L["Hearthstone"],
-	["Hero"] = L["Heroes of the Storm"],
-	["S1"] = L["StarCraft: Remastered"],
-	["S2"] = L["StarCraft II"],
-	["Pro"] = L["Overwatch"],
 	["DST2"] = L["Destiny 2"],
+	["WTCG"] = L["Hearthstone"],
+	["WoW"] = L["World of Warcraft"],
+	["S1"] = L["StarCraft: Remastered"],
+	["D3"] = L["Diablo III"],
+	["Hero"] = L["Heroes of the Storm"],
+	["Pro"] = L["Overwatch"],
+	["App"] = L["In App"],
+	["S2"] = L["StarCraft II"],
+	--["CLNT"] -- Unknown
+	["BSAp"] = L["Mobile"],
 };
 --------------------------------------------------------------------------------------------------------------------------------------------
 -- Miscellaneous Functions
@@ -45,11 +50,11 @@ NS.ScanFriends = function ()
 		for index = 1, BNGetNumFriends() do
 			local bnetIDAccount,accountName,_,_,characterName,_,game = BNGetFriendInfo( index );
 			if game and NS.friends[bnetIDAccount] and NS.friends[bnetIDAccount]["game"] then -- Make sure friend is online now and was online during last scan
-				if game ~= NS.friends[bnetIDAccount]["game"] then -- Alert, friend has switched games (App is considered a game)
-					if game == "App" then
-						NS.AddMessageToWindow( NS.icons["Friend"] .. string.format( L["%s stopped playing (%sIn App)."], NS.BNPlayerLink( accountName, bnetIDAccount ), NS.icons[game] ) );
+				if game ~= NS.friends[bnetIDAccount]["game"] then -- Alert, friend has switched games (App and CLNT are considered "games")
+					if ( game == "App" or game == "BSAp" ) and NS.friends[bnetIDAccount]["game"] ~= "App" and NS.friends[bnetIDAccount]["game"] ~= "BSAp" then -- Friend only "stopped playing" if they were previously playing a "game" other than App or BSAp
+						NS.AddMessageToWindow( NS.icons["Friend"] .. string.format( L["%s stopped playing (%s%s)."], NS.BNPlayerLink( accountName, bnetIDAccount ), NS.icons[game], NS.games[game] ) );
 					else
-						NS.AddMessageToWindow( NS.icons["Friend"] .. string.format( L["%s is now playing (%s%s)."], NS.BNPlayerLink( accountName, bnetIDAccount ), ( NS.icons[game] or L["Unknown Game"] ), ( characterName or NS.games[game] or L["Unknown Character and Game"] ) ) );
+						NS.AddMessageToWindow( NS.icons["Friend"] .. string.format( L["%s is now playing (%s%s)."], NS.BNPlayerLink( accountName, bnetIDAccount ), ( NS.icons[game] or L["Unknown Game"] ), ( characterName or ( NS.icons[game] and NS.games[game] or "" ) ) ) );
 						PlaySound( 18019 ); -- UI_BnetToast
 					end
 				end

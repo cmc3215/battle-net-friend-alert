@@ -1,3 +1,9 @@
+**2.8**
+
+- Release date: 05/29/2018
+- No longer reports Mobile as "Unknown Game" when friends stop playing an actual game title. The "In App" and "Mobile" status as seen on the in-game Friends list is now reported accurately.
+- Minor localization phrase changes.
+
 **2.7**
 
 - Release date: 10/15/2017
