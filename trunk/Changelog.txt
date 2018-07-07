@@ -1,3 +1,8 @@
+**2.9**
+
+- Release date: 07/07/2018
+- Bug fix: Alert incorrectly occurred when friends switched from the Battle.net "App" to "Mobile" and vice versa. This issue was compounded by Blizzard rapidly reporting a switch between App and Mobile when the friend was not switching at all.
+
 **2.8**
 
 - Release date: 05/29/2018
