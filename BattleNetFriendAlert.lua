@@ -5,7 +5,7 @@ local NS = select( 2, ... );
 local L = NS.localization;
 NS.addon = ...;
 NS.title = GetAddOnMetadata( NS.addon, "Title" );
-NS.versionString = "2.8";
+NS.versionString = "2.9";
 NS.version = tonumber( NS.versionString );
 --
 NS.interval = 3; -- Seconds between ScanFriends()
@@ -50,9 +50,11 @@ NS.ScanFriends = function ()
 		for index = 1, BNGetNumFriends() do
 			local bnetIDAccount,accountName,_,_,characterName,_,game = BNGetFriendInfo( index );
 			if game and NS.friends[bnetIDAccount] and NS.friends[bnetIDAccount]["game"] then -- Make sure friend is online now and was online during last scan
-				if game ~= NS.friends[bnetIDAccount]["game"] then -- Alert, friend has switched games (App and CLNT are considered "games")
-					if ( game == "App" or game == "BSAp" ) and NS.friends[bnetIDAccount]["game"] ~= "App" and NS.friends[bnetIDAccount]["game"] ~= "BSAp" then -- Friend only "stopped playing" if they were previously playing a "game" other than App or BSAp
-						NS.AddMessageToWindow( NS.icons["Friend"] .. string.format( L["%s stopped playing (%s%s)."], NS.BNPlayerLink( accountName, bnetIDAccount ), NS.icons[game], NS.games[game] ) );
+				if game ~= NS.friends[bnetIDAccount]["game"] then -- Alert, friend has switched games (App and BSAp are considered "games")
+					if game == "App" or game == "BSAp" then
+						if NS.friends[bnetIDAccount]["game"] ~= "App" and NS.friends[bnetIDAccount]["game"] ~= "BSAp" then -- Friend only "stopped playing" if they were previously playing a "game" other than App or BSAp
+							NS.AddMessageToWindow( NS.icons["Friend"] .. string.format( L["%s stopped playing (%s%s)."], NS.BNPlayerLink( accountName, bnetIDAccount ), NS.icons[game], NS.games[game] ) );
+						end
 					else
 						NS.AddMessageToWindow( NS.icons["Friend"] .. string.format( L["%s is now playing (%s%s)."], NS.BNPlayerLink( accountName, bnetIDAccount ), ( NS.icons[game] or L["Unknown Game"] ), ( characterName or ( NS.icons[game] and NS.games[game] or "" ) ) ) );
 						PlaySound( 18019 ); -- UI_BnetToast
