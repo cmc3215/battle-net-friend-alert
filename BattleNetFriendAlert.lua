@@ -5,7 +5,7 @@ local NS = select( 2, ... );
 local L = NS.localization;
 NS.addon = ...;
 NS.title = GetAddOnMetadata( NS.addon, "Title" );
-NS.versionString = "2.9";
+NS.versionString = "3.0";
 NS.version = tonumber( NS.versionString );
 --
 NS.interval = 3; -- Seconds between ScanFriends()
