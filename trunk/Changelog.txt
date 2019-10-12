@@ -1,3 +1,8 @@
+**3.3**
+
+- Release date: 10/12/2019
+- Removed call to garbage collection as it was lagging the game in some circumstances.
+
 **3.2**
 
 - Release date: 10/12/2019
