@@ -1,3 +1,8 @@
+**3.4**
+
+- Release date: 10/12/2019
+- Minor change to code to reduce memory usage. Special thanks to Areko on CurseForge for the suggestion.
+
 **3.3**
 
 - Release date: 10/12/2019

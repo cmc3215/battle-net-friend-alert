@@ -5,7 +5,7 @@ local NS = select( 2, ... );
 local L = NS.localization;
 NS.addon = ...;
 NS.title = GetAddOnMetadata( NS.addon, "Title" );
-NS.versionString = "3.3";
+NS.versionString = "3.4";
 NS.version = tonumber( NS.versionString );
 --
 NS.interval = 3; -- Seconds between ScanFriends()
@@ -64,7 +64,8 @@ NS.ScanFriends = function ()
 				end
 			end
 			-- Record latest friend info
-			NS.friends[bnetIDAccount] = { ["game"] = game };
+			NS.friends[bnetIDAccount] = NS.friends[bnetIDAccount] or {};
+			NS.friends[bnetIDAccount]["game"] = game;
 		end
 	end
 	-- Scan again in interval seconds
