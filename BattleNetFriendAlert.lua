@@ -5,7 +5,7 @@ local NS = select( 2, ... );
 local L = NS.localization;
 NS.addon = ...;
 NS.title = GetAddOnMetadata( NS.addon, "Title" );
-NS.versionString = "3.1";
+NS.versionString = "3.2";
 NS.version = tonumber( NS.versionString );
 --
 NS.interval = 3; -- Seconds between ScanFriends()
@@ -67,6 +67,8 @@ NS.ScanFriends = function ()
 			NS.friends[bnetIDAccount] = { ["game"] = game };
 		end
 	end
+	-- Collect garbage to reduce memory usage
+	collectgarbage( "collect" );
 	-- Scan again in interval seconds
 	C_Timer.After( NS.interval, NS.ScanFriends );
 end
