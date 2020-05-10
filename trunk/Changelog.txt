@@ -1,3 +1,8 @@
+**3.5**
+
+- Release date: 05/09/2020
+- Added icon path for Call of Duty: MW, Call of Duty: MW2CR, and Warcraft III.
+
 **3.4**
 
 - Release date: 10/12/2019
