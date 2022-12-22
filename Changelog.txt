@@ -1,3 +1,19 @@
+**3.8**
+
+- Release date: 12/05/2022
+- TOC updated for patch 10.0.2.
+
+**3.7**
+
+- Release date: 09/17/2022
+- Minor update to prevent Lua error when Battle.net is offline.
+
+**3.6**
+
+- Release date: 09/13/2022
+- Updated BNGetFriendInfo to C_BattleNet.GetFriendAccountInfo and remapped the data the new function provides.
+- Added icon path for Crash Bandicoot 4, Diablo II: Resurrected, Diablo Immortal, Call of Duty: Vanguard, Warcraft Arclight Rumble, Call of Duty: Black Ops Cold War, and Blizzard Arcade Collection.
+
 **3.5**
 
 - Release date: 05/09/2020
