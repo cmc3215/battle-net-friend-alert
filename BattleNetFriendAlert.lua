@@ -5,46 +5,61 @@ local NS = select( 2, ... );
 local L = NS.localization;
 NS.addon = ...;
 NS.title = GetAddOnMetadata( NS.addon, "Title" );
-NS.versionString = "3.5";
+NS.versionString = "3.8";
 NS.version = tonumber( NS.versionString );
 --
 NS.interval = 3; -- Seconds between ScanFriends()
 NS.friends = {};
 NS.icons = {
+	["WLBY"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-CrashBandicoot4:14|t",
+	["OSI"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-DiabloIIResurrected:14|t",
 	["DST2"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-Destiny2:14|t",
 	["WTCG"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-WTCG:14|t",
 	["WoW"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-WoW:14|t",
 	["ODIN"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-CallOfDutyMWicon:14|t",
 	["LAZR"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-CallOfDutyMWicon:14|t",
+	["VIPR"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-CallOfDutyBlackOps4:14|t",
 	["S1"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-SC:14|t",
+	["ANBS"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-DiabloImmortal:14|t",
 	["App"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-Battlenet:14|t", -- Blizzard Battle.net App (Desktop)
 	["D3"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-D3:14|t",
 	["Hero"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-HotS:14|t",
-	["Pro"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-Overwatch:14|t",
+	["FORE"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-CallOfDutyVanguard:14|t",
+	["GRY"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-WarcraftArclightRumble:14|t",
 	["W3"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-Warcraft3Reforged:14|t",
-	["VIPR"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-CallOfDutyBlackOps4:14|t",	
+	["ZEUS"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-CallofDutyBlackOpsColdWaricon:14|t",
+	["Pro"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-Overwatch:14|t",
+	-- ["App"]
 	["S2"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-SC2:14|t",
-	--["CLNT"] -- Unknown
+	["RTRO"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-BlizzardArcadeCollection:14|t",	
 	["BSAp"] = "|TInterface\\CHATFRAME\\UI-ChatIcon-Battlenet:14|t", -- Blizzard Battle.net App (Mobile)
+	--["CLNT"] -- Unknown
 	--
 	["Friend"] = "|TInterface\\FriendsFrame\\UI-Toast-FriendOnlineIcon:16:16:0:0:32:32:2:30:2:30|t",
 };
 NS.games = {
+	["WLBY"] = L["Crash Bandicoot 4"],
+	["OSI"] = L["Diablo II: Resurrected"],
 	["DST2"] = L["Destiny 2"],
 	["WTCG"] = L["Hearthstone"],
 	["WoW"] = L["World of Warcraft"],
 	["ODIN"] = L["Call of Duty: MW"],
 	["LAZR"] = L["Call of Duty: MW2CR"],
+	["VIPR"] = L["Call of Duty: Black Ops 4"],
 	["S1"] = L["StarCraft: Remastered"],
-	["App"] = L["In App"],
+	["ANBS"] = L["Diablo Immortal"],	
 	["D3"] = L["Diablo III"],
 	["Hero"] = L["Heroes of the Storm"],
+	["FORE"] = L["Call of Duty: Vanguard"],
+	["GRY"] = L["Warcraft Arclight Rumble"],	
+	["W3"] = L["Warcraft III: Reforged"],
+	["ZEUS"] = L["Call of Duty: Black Ops Cold War"],
 	["Pro"] = L["Overwatch"],
-	["W3"] = L["Warcraft III"],
-	["VIPR"] = L["Call of Duty: Black Ops 4"],
+	["App"] = L["In App"],
 	["S2"] = L["StarCraft II"],
-	--["CLNT"] -- Unknown
+	["RTRO"] = L["Blizzard Arcade Collection"],	
 	["BSAp"] = L["Mobile"],
+	--["CLNT"] -- Unknown	
 };
 --------------------------------------------------------------------------------------------------------------------------------------------
 -- Miscellaneous Functions
@@ -56,22 +71,28 @@ end
 NS.ScanFriends = function ()
 	if BNConnected() then
 		for index = 1, BNGetNumFriends() do
-			local bnetIDAccount,accountName,_,_,characterName,_,game = BNGetFriendInfo( index );
-			if game and NS.friends[bnetIDAccount] and NS.friends[bnetIDAccount]["game"] then -- Make sure friend is online now and was online during last scan
-				if game ~= NS.friends[bnetIDAccount]["game"] then -- Alert, friend has switched games (App and BSAp are considered "games")
-					if game == "App" or game == "BSAp" then
-						if NS.friends[bnetIDAccount]["game"] ~= "App" and NS.friends[bnetIDAccount]["game"] ~= "BSAp" then -- Friend only "stopped playing" if they were previously playing a "game" other than App or BSAp
-							NS.AddMessageToWindow( NS.icons["Friend"] .. string.format( L["%s stopped playing (%s%s)."], NS.BNPlayerLink( accountName, bnetIDAccount ), NS.icons[game], NS.games[game] ) );
+			local friendAccountInfo = C_BattleNet.GetFriendAccountInfo( index );
+			if friendAccountInfo then
+				local bnetIDAccount = friendAccountInfo.bnetAccountID;
+				local accountName = friendAccountInfo.accountName;
+				local characterName = ( friendAccountInfo.gameAccountInfo and friendAccountInfo.gameAccountInfo.characterName ) or nil;
+				local game = ( friendAccountInfo.gameAccountInfo and friendAccountInfo.gameAccountInfo.clientProgram ) or nil;
+				if game and NS.friends[bnetIDAccount] and NS.friends[bnetIDAccount]["game"] then -- Make sure friend is online now and was online during last scan
+					if game ~= NS.friends[bnetIDAccount]["game"] then -- Alert, friend has switched games (App and BSAp are considered "games")
+						if game == "App" or game == "BSAp" then
+							if NS.friends[bnetIDAccount]["game"] ~= "App" and NS.friends[bnetIDAccount]["game"] ~= "BSAp" then -- Friend only "stopped playing" if they were previously playing a "game" other than App or BSAp
+								NS.AddMessageToWindow( NS.icons["Friend"] .. string.format( L["%s stopped playing (%s%s)."], NS.BNPlayerLink( accountName, bnetIDAccount ), NS.icons[game], NS.games[game] ) );
+							end
+						else
+							NS.AddMessageToWindow( NS.icons["Friend"] .. string.format( L["%s is now playing (%s%s)."], NS.BNPlayerLink( accountName, bnetIDAccount ), ( NS.icons[game] or L["Unknown Game"] ), ( characterName or ( NS.icons[game] and NS.games[game] or "" ) ) ) );
+							PlaySound( 18019 ); -- UI_BnetToast
 						end
-					else
-						NS.AddMessageToWindow( NS.icons["Friend"] .. string.format( L["%s is now playing (%s%s)."], NS.BNPlayerLink( accountName, bnetIDAccount ), ( NS.icons[game] or L["Unknown Game"] ), ( characterName or ( NS.icons[game] and NS.games[game] or "" ) ) ) );
-						PlaySound( 18019 ); -- UI_BnetToast
 					end
 				end
+				-- Record latest friend info
+				NS.friends[bnetIDAccount] = NS.friends[bnetIDAccount] or {};
+				NS.friends[bnetIDAccount]["game"] = game;
 			end
-			-- Record latest friend info
-			NS.friends[bnetIDAccount] = NS.friends[bnetIDAccount] or {};
-			NS.friends[bnetIDAccount]["game"] = game;
 		end
 	end
 	-- Scan again in interval seconds
